@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data;
+using DatingApp.API.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +12,17 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.API.Controllers
 {
     //http:localhost:5000/api/values
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         private readonly DataContext _context;
+        //private readonly Mapper _mapper;
         public ValuesController(DataContext context)
         {
             _context=context;
+            // _mapper = mapper;
             
         }
          [AllowAnonymous] 
@@ -27,8 +31,11 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> GetValues()
         {
            // throw new Exception("Test Exception");
-            var values=await _context.Values.ToListAsync();
+           var values=await _context.Values.ToListAsync();
             return Ok(values);
+           //var users=await _context.Users.Include(p=>p.Photos).ToListAsync();
+          // var usersToReturn=_mapper.Map<IEnumerable<UserForListDto>>(users);
+            //return Ok(usersToReturn);
         }
           
         // GET api/values/5

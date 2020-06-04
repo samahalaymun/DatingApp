@@ -31,4 +31,10 @@ loggedIn() {
   const token = localStorage.getItem('token');
   return !this.jwtHelper.isTokenExpired(token);
 }
+getUSers(){
+  return this.http.get('http://localhost:5000/api/users').pipe(map((response: any)=>{
+    const users=response;
+    console.log(users);
+  }));
+}
 }

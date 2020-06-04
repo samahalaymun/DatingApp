@@ -16,6 +16,9 @@ username:any;
                private router:Router) { }
 
   ngOnInit() {
+    // this.authService.getUSers().subscribe(next =>{
+    //   console.log('get users successfully');
+    // });
   }
   login(){
     this.authService.login(this.model).subscribe(next =>{
