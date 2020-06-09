@@ -22,7 +22,7 @@
       
       <a class="dropdown-toggle text-light" dropdownToggle  >
         <span class="mr-1">
-          <img src="{{photoUrl}}" alt=""class="rounded-circle">
+          <img src="{{photoUrl || '../../../../assets//user.png'}}" alt=""class="rounded-circle">
         </span>
         {{authService.decodedToken?.unique_name | titlecase}}
       </a>

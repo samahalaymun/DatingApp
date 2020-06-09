@@ -1,4 +1,4 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component ,OnInit, AfterViewInit, ElementRef} from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { User } from './_models/user';
@@ -7,10 +7,10 @@ import { User } from './_models/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   jwtHelper=new JwtHelperService();
   title = 'DatingApp-SPA';
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService,private elementRef: ElementRef){}
   ngOnInit(): void {
     const token=localStorage.getItem('token');
     const user:User=JSON.parse( localStorage.getItem('user'));
@@ -22,4 +22,8 @@ export class AppComponent implements OnInit {
       this.authService.changeMemberPhoto(user.photoUrl);
     }
   }
+  ngAfterViewInit(){
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#F5F5F5';
+    //this.elementRef.nativeElement.ownerDocument.body.style.opacity=0.4;
+ }
 }
