@@ -6,3 +6,9 @@ img{
     border:2px solid white;
     display: inline;
 }
+.btn-bkg :hover{
+    background-color: #cda2ba;
+}
+.btn-bkg >button>i.fa-search{
+    color: white;
+}

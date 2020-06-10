@@ -8,7 +8,7 @@
   <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
     <ul class="navbar-nav mr-auto"*ngIf="loggedIn()">
       <li class="nav-item "routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/members']"  >Matches </a>
+        <a class="nav-link " [routerLink]="['/members']"  >Matches </a>
       </li>
       <li class="nav-item"routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/lists']">Lists</a>
@@ -16,8 +16,30 @@
       <li class="nav-item"routerLinkActive="active">
         <a class="nav-link " [routerLink]="['/messages']">Messages</a>
       </li>
-
+      
     </ul>
+    <!-- <div class="mr-5 ">
+      <form class="form-inline ">
+       <div class="input-group ">
+           <div >
+           <input class="form-control " type="search" placeholder="Search" aria-label="Search">
+         </div>
+          <div class="input-group-prepend">
+            <button class="btn btn-dark " type="submit"><i class="fa fa-search"></i></button>
+         </div>
+       </div>
+      </form>
+  </div> -->
+  <form class="mx-2 my-auto d-inline w-100 mr-5 ml-5" *ngIf="loggedIn()">
+    <div class="input-group">
+        <input type="text" class="form-control border border-right-0" placeholder="Search...">
+        <span class="input-group-append btn-bkg">
+            <button class="btn btn-outline-secondary border border-left-0" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+</form>
     <div class="dropdown " *ngIf="loggedIn()" dropdown >
       
       <a class="dropdown-toggle text-light" dropdownToggle  >
