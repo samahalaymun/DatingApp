@@ -35,6 +35,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {TimeagoModule} from 'ngx-timeago';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ListResolver } from './_resolvers/lists.resolver';
 
 
 
@@ -87,7 +88,8 @@ export function tokenGetter() {
       MemberListResolver,
       MemberEditResolver,
       PreventUnsavedChanged,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      ListResolver
    ],
    bootstrap: [
       AppComponent
