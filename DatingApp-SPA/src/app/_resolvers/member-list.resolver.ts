@@ -16,7 +16,7 @@ export class MemberListResolver implements Resolve<User[]>{
        
        
     }
-    resolve(route:ActivatedRouteSnapshot,):Observable<User[]>{
+    resolve(route: ActivatedRouteSnapshot): Observable<User[]>{
         return this.userService.getUsers(this.pageNumber,this.pageSize).pipe(
             catchError(error=>{
                 this.alertify.error('problem retrieving data');

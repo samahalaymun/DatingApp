@@ -1,0 +1,16 @@
+table{
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    background-color: #fefefe;
+    
+
+}
+
+.img-circle{
+    
+    max-height: 30px;
+    
+}
+td{
+    vertical-align: middle;
+}

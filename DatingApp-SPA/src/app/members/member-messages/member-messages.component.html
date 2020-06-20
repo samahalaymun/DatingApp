@@ -1,0 +1,55 @@
+
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="messages?.length ===0">
+      <p>No messages yet ...say hi by using the message box below</p>
+    </div>
+    <ul class="chat">
+      <li *ngFor="let message of messages">
+        <!-- to them -->
+        <div *ngIf="message.senderId == recipientId" class="d-flex justify-content-start mb-4">
+          <span class="chat-img float-left">
+            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
+          </span>
+          <div class="chat-body">
+            <div  class="msg_cotainer">
+              {{message.content}}
+            </div>
+            <span class="fa fa-clock-o text-muted  msg_time">
+              {{message.messageSent | timeago}}</span>
+          </div>
+        </div>
+        <!-- to me -->
+        <div *ngIf="message.senderId != recipientId" class="d-flex justify-content-end mb-4">
+          <div class="chat-body ">
+            <div class="msg_cotainer_send">
+              {{message.content}}
+            </div>
+            <small class="float-right msg_time_send">
+            <span class="fa fa-clock-o text-muted ">{{message.messageSent | timeago}}</span>
+            <span *ngIf="!message.isRead" class="text-danger  ">(unread)</span>
+            <span *ngIf="message.isRead" class="text-success  ">(Read {{message.dateRead | timeago}})</span>
+          </small>
+          </div>
+          <div class="chat-img float-right ">
+            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+     <form  #messageForm="ngForm" (ngSubmit)="messageForm.valid && sendMessage()">
+       <div class="input-group">
+         <input type="text" class="form-control input-sm" 
+         placeholder="Type your message ... "
+         [(ngModel)]="newMessage.content"
+         name="content"
+         required>
+         <div class="input-group-append">
+           <button class="btn btn-dark"[disabled]="!messageForm.valid"><i class="fa fa-paper-plane ml-1" aria-hidden="true"></i></button>
+         </div>
+       </div>
+     </form>
+  </div>
+</div>
