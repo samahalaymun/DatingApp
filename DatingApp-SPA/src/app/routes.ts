@@ -12,9 +12,10 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanged } from './_guards/prevent-unsaved-changes.guard';
 import { ListResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { NoAuthGuard } from './_guards/noAuth.guard';
 
 export const appRoutes: Routes=[
-    {path: '', component: HomeComponent},
+    {path: '', component: HomeComponent,canActivate:[NoAuthGuard]},
     {
         path:'',
         runGuardsAndResolvers:'always',

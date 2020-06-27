@@ -4,6 +4,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/_models/user';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./member-messages.component.css']
 })
 export class MemberMessagesComponent implements OnInit {
-  @Input()recipientId: number;
+  @Input()recipientUser: User;
   messages: Message[];
   newMessage: any = {};
   constructor(private userService: UserService ,
@@ -27,7 +28,7 @@ export class MemberMessagesComponent implements OnInit {
     const currentUserId= +this.authService.decodedToken.nameid;
     console.log(currentUserId);
     this.userService.getMessageThread(this.authService.decodedToken.nameid,
-        this.recipientId)
+        this.recipientUser.id)
         .pipe(
           tap(message=>{
           for( let i=0; i < message.length ; i++) {
@@ -49,7 +50,7 @@ export class MemberMessagesComponent implements OnInit {
                                       
   }
   sendMessage(){
-    this.newMessage.recipientId=this.recipientId;
+    this.newMessage.recipientId=this.recipientUser.id;
     this.userService.sendMessage(this.authService.decodedToken.nameid,this.newMessage)
     .subscribe((message: Message)=>{
       //debugger;

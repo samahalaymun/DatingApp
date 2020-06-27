@@ -38,6 +38,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ListResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { NoAuthGuard } from './_guards/noAuth.guard';
 
 
 
@@ -93,7 +94,8 @@ export function tokenGetter() {
       PreventUnsavedChanged,
       ErrorInterceptorProvider,
       ListResolver,
-      MessagesResolver
+      MessagesResolver,
+      NoAuthGuard
    ],
    bootstrap: [
       AppComponent

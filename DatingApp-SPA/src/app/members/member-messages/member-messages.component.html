@@ -1,5 +1,18 @@
 
 <div class="card">
+  <div class="card-header msg_head">
+    <div class="d-flex bd-highlight">
+      <div class="img_cont">
+        <img src="{{recipientUser.photoUrl}}" class="rounded-circle user_img">
+        <span class="online_icon"></span>
+      </div>
+      <div class="user_info">
+        <span>Chat with {{recipientUser.knownAs}}</span>
+      </div>
+    </div>
+  </div>
+
+
   <div class="card-body">
     <div *ngIf="messages?.length ===0">
       <p>No messages yet ...say hi by using the message box below</p>
@@ -7,30 +20,40 @@
     <ul class="chat">
       <li *ngFor="let message of messages">
         <!-- to them -->
-        <div *ngIf="message.senderId == recipientId" class="d-flex justify-content-start mb-4">
+        <div *ngIf="message.senderId == recipientUser.id" class="d-flex justify-content-start mb-4">
           <span class="chat-img float-left">
             <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
           </span>
           <div class="chat-body">
+            <span class="fa fa-clock-o text-muted  msg_time">
+              {{message.messageSent | timeago}}</span><br>
             <div  class="msg_cotainer">
               {{message.content}}
             </div>
-            <span class="fa fa-clock-o text-muted  msg_time">
-              {{message.messageSent | timeago}}</span>
+            
           </div>
         </div>
         <!-- to me -->
-        <div *ngIf="message.senderId != recipientId" class="d-flex justify-content-end mb-4">
+        <div *ngIf="message.senderId !=  recipientUser.id" class="d-flex justify-content-end mb-4">
           <div class="chat-body ">
+            <span class="fa fa-clock-o text-muted float-right msg_time_send">{{message.messageSent | timeago}}</span>
+            <br>
             <div class="msg_cotainer_send">
-              {{message.content}}
+             {{message.content}}
             </div>
+            
             <small class="float-right msg_time_send">
-            <span class="fa fa-clock-o text-muted ">{{message.messageSent | timeago}}</span>
-            <span *ngIf="!message.isRead" class="text-danger  ">(unread)</span>
-            <span *ngIf="message.isRead" class="text-success  ">(Read {{message.dateRead | timeago}})</span>
-          </small>
+              <!---unread message -->
+              <!-- <span *ngIf="!message.isRead" >
+                <i class="fa fa-check-circle-o" aria-hidden="true" style="color: red;"></i></span> -->
+              <!---read message -->
+              <span *ngIf="message.isRead" style="color: rgb(59, 57, 57);font-size: 12px;">seen
+                <i class="fa fa-check-circle" aria-hidden="true" style="color: green;"></i>
+              </span>
+            </small>
+          
           </div>
+         
           <div class="chat-img float-right ">
             <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
           </div>
